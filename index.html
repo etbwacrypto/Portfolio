@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emna Nouralhouda Bettaïeb — Creative Conceptualizer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Anybody:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+```
+:root {
+  --black: #08060a;
+  --dark: #0f0b12;
+  --panel: #130f16;
+  --terracotta: #7a1a3a;
+  --ember: #9e2150;
+  --gold: #e8c42a;
+  --sand: #f0eadc;
+  --dim: #4a3a50;
+  --muted: #9a88a8;
+  --display: 'Unbounded', sans-serif;
+  --body: 'Anybody', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--sand);
+  font-family: var(--body);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CURSOR */
+#cur {
+  position: fixed; width: 12px; height: 12px;
+  border-radius: 50%; background: var(--terracotta);
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width .2s, height .2s, background .2s;
+  mix-blend-mode: screen;
+}
+#cur.big { width: 44px; height: 44px; background: var(--gold); opacity: 0.5; }
+
+/* ─── NORTH AFRICAN SVG PATTERNS ─── */
+/* Reusable zellige / zellij tile pattern */
+.pattern-tile {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.07;
+}
+.pattern-tile svg { display: block; }
+
+/* Berber symbol strip */
+.berber-strip {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.2rem 4rem;
+  border-top: 1px solid rgba(196,83,42,0.15);
+  border-bottom: 1px solid rgba(196,83,42,0.15);
+  overflow: hidden;
+}
+.berber-glyph {
+  font-size: 1.4rem;
+  color: var(--terracotta);
+  opacity: 0.6;
+  flex-shrink: 0;
+  animation: glyphPulse 4s ease-in-out infinite;
+}
+.berber-glyph:nth-child(odd) { animation-delay: 0.5s; }
+@keyframes glyphPulse { 0%,100%{opacity:0.4} 50%{opacity:0.8} }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 600;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.8rem 4rem;
+  background: rgba(10,8,5,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(196,83,42,0.12);
+}
+.nav-logo {
+  font-family: var(--display);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sand);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--terracotta); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-family: var(--display);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--terracotta); }
+.nav-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #3aff8a;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Full background zellige pattern */
+.hero-pattern-bg {
+  position: absolute; inset: 0;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cdefs%3E%3Cpattern id='z' x='0' y='0' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpolygon points='30,2 58,16 58,44 30,58 2,44 2,16' fill='none' stroke='%23c4532a' stroke-width='1'/%3E%3Cpolygon points='30,12 48,22 48,42 30,52 12,42 12,22' fill='none' stroke='%23c4532a' stroke-width='0.5'/%3E%3Cline x1='30' y1='2' x2='30' y2='12' stroke='%23c4532a' stroke-width='0.5'/%3E%3Cline x1='58' y1='16' x2='48' y2='22' stroke='%23c4532a' stroke-width='0.5'/%3E%3Cline x1='58' y1='44' x2='48' y2='42' stroke='%23c4532a' stroke-width='0.5'/%3E%3Cline x1='30' y1='58' x2='30' y2='52' stroke='%23c4532a' stroke-width='0.5'/%3E%3Cline x1='2' y1='44' x2='12' y2='42' stroke='%23c4532a' stroke-width='0.5'/%3E%3Cline x1='2' y1='16' x2='12' y2='22' stroke='%23c4532a' stroke-width='0.5'/%3E%3Ccircle cx='30' cy='30' r='3' fill='none' stroke='%23d4a83a' stroke-width='0.5'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='120' height='120' fill='url(%23z)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Radial vignette to make center pop */
+.hero-vignette {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 70% at 40% 60%, transparent 30%, var(--black) 100%);
+  pointer-events: none;
+}
+
+/* Large decorative Tifinagh-inspired symbol top right */
+.hero-symbol-tr {
+  position: absolute;
+  top: 4rem; right: 3rem;
+  font-size: 18rem;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--terracotta);
+  opacity: 0.06;
+  font-family: var(--display);
+  font-weight: 900;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Decorative corner ornaments */
+.corner-ornament {
+  position: absolute;
+  width: 120px; height: 120px;
+  pointer-events: none;
+  opacity: 0.18;
+}
+.corner-ornament.tl { top: 5.5rem; left: 0; }
+.corner-ornament.br { bottom: 3rem; right: 0; transform: rotate(180deg); }
+
+.hero-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10rem 4rem 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-label {
+  font-family: var(--display);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 3rem;
+  display: flex; align-items: center; gap: 1.5rem;
+}
+.hero-label::before {
+  content: '';
+  width: 48px; height: 2px;
+  background: var(--terracotta);
+}
+
+.hero-headline {
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 5.5vw, 6.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  max-width: 20ch;
+  margin-bottom: 5rem;
+}
+.hero-headline .normal { color: var(--sand); display: block; }
+.hero-headline .accent { color: var(--terracotta); display: block; }
+.hero-headline .outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--sand);
+  display: block;
+  opacity: 0.4;
+}
+
+.hero-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.hero-sub {
+  font-family: var(--body);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 36ch;
+}
+.hero-sub em { color: var(--sand); font-style: normal; }
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 1rem;
+  font-family: var(--display);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--terracotta);
+  color: var(--sand);
+  padding: 1.1rem 2.2rem;
+  text-decoration: none;
+  transition: background .2s, gap .2s;
+  white-space: nowrap;
+}
+.hero-cta:hover { background: var(--ember); gap: 1.8rem; }
+
+/* Berber symbol row */
+.hero-symbols {
+  position: relative; z-index: 2;
+  display: flex; align-items: center;
+  gap: 0; overflow: hidden;
+  border-top: 1px solid rgba(196,83,42,0.2);
+}
+.symbol-scroll {
+  display: flex; align-items: center;
+  animation: symbolScroll 24s linear infinite;
+  white-space: nowrap;
+}
+@keyframes symbolScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.sym {
+  font-family: var(--display);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 1.1rem 2.5rem;
+  border-right: 1px solid rgba(196,83,42,0.12);
+  flex-shrink: 0;
+}
+.sym.highlight { color: var(--terracotta); }
+
+/* ══════════════════════════════
+   ABOUT
+══════════════════════════════ */
+#about {
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Side pattern strips */
+.about-pattern-left {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 80px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpattern id='p' x='0' y='0' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Crect x='10' y='10' width='20' height='20' fill='none' stroke='%23c4532a' stroke-width='0.6' transform='rotate(45 20 20)'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23c4532a'/%3E%3Ccircle cx='0' cy='0' r='1.5' fill='%23c4532a'/%3E%3Ccircle cx='40' cy='0' r='1.5' fill='%23c4532a'/%3E%3Ccircle cx='0' cy='40' r='1.5' fill='%23c4532a'/%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%23c4532a'/%3E%3C/pattern%3E%3Crect width='80' height='80' fill='url(%23p)'/%3E%3C/svg%3E");
+  opacity: 0.12;
+  pointer-events: none;
+}
+.about-pattern-right {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 80px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpattern id='p2' x='0' y='0' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Crect x='10' y='10' width='20' height='20' fill='none' stroke='%23c4532a' stroke-width='0.6' transform='rotate(45 20 20)'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23c4532a'/%3E%3Ccircle cx='0' cy='0' r='1.5' fill='%23c4532a'/%3E%3Ccircle cx='40' cy='0' r='1.5' fill='%23c4532a'/%3E%3Ccircle cx='0' cy='40' r='1.5' fill='%23c4532a'/%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%23c4532a'/%3E%3C/pattern%3E%3Crect width='80' height='80' fill='url(%23p2)'/%3E%3C/svg%3E");
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  min-height: 100vh;
+  position: relative;
+  z-index: 2;
+}
+
+.about-left {
+  padding: 8rem 3rem 8rem 6rem;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(196,83,42,0.15);
+}
+.about-eyebrow {
+  font-family: var(--display);
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 2.5rem;
+}
+.about-title {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 5vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.about-title .dim { color: var(--dim); display: block; }
+.about-title .lit { color: var(--sand); display: block; }
+.about-title .acc { color: var(--terracotta); display: block; }
+
+/* Photo box */
+.about-photo {
+  margin-top: 4rem;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: var(--panel);
+  border: 1px solid rgba(196,83,42,0.2);
+  overflow: hidden;
+}
+.about-photo::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpattern id='ph' x='0' y='0' width='30' height='30' patternUnits='userSpaceOnUse'%3E%3Cpolygon points='15,1 29,8 29,22 15,29 1,22 1,8' fill='none' stroke='%23c4532a' stroke-width='0.4'/%3E%3C/pattern%3E%3Crect width='60' height='60' fill='url(%23ph)'/%3E%3C/svg%3E");
+  opacity: 0.15;
+}
+.about-photo-center {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 1rem;
+}
+.photo-monogram {
+  font-family: var(--display);
+  font-size: 4rem;
+  font-weight: 900;
+  color: rgba(232,223,200,0.08);
+  letter-spacing: 0.1em;
+}
+.photo-hint {
+  font-family: var(--display);
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(196,83,42,0.4);
+}
+.about-photo-corner {
+  position: absolute;
+  width: 20px; height: 20px;
+  border-color: var(--terracotta);
+  border-style: solid;
+  opacity: 0.5;
+}
+.about-photo-corner.tl { top: 8px; left: 8px; border-width: 1px 0 0 1px; }
+.about-photo-corner.tr { top: 8px; right: 8px; border-width: 1px 1px 0 0; }
+.about-photo-corner.bl { bottom: 8px; left: 8px; border-width: 0 0 1px 1px; }
+.about-photo-corner.br { bottom: 8px; right: 8px; border-width: 0 1px 1px 0; }
+
+/* Stats row */
+.about-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; margin-top: 3rem;
+  border: 1px solid rgba(196,83,42,0.15);
+}
+.stat {
+  padding: 1.2rem;
+  border: 1px solid rgba(196,83,42,0.1);
+}
+.stat-n {
+  font-family: var(--display);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--terracotta);
+  line-height: 1;
+}
+.stat-l {
+  font-family: var(--display);
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 0.3rem;
+}
+
+/* Right column */
+.about-right {
+  padding: 8rem 5rem 8rem 5rem;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+/* Large background symbol */
+.about-bg-sym {
+  position: absolute;
+  bottom: 0; right: -2rem;
+  font-family: var(--display);
+  font-size: 28rem;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(196,83,42,0.06);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.about-body {
+  font-family: var(--body);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.85;
+  color: var(--muted);
+  margin-bottom: 1.8rem;
+  position: relative; z-index: 2;
+}
+.about-body strong { color: var(--sand); font-weight: 900; }
+.about-body em { color: var(--terracotta); font-style: normal; }
+
+.about-quote {
+  font-family: var(--display);
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-weight: 900;
+  line-height: 1.4;
+  color: var(--sand);
+  border-left: 3px solid var(--terracotta);
+  padding: 1.5rem 2rem;
+  background: rgba(196,83,42,0.06);
+  margin: 2.5rem 0;
+  position: relative; z-index: 2;
+  letter-spacing: -0.01em;
+}
+
+.about-tags {
+  display: flex; flex-wrap: wrap; gap: 0.6rem;
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(196,83,42,0.15);
+  position: relative; z-index: 2;
+}
+.atag {
+  font-family: var(--display);
+  font-size: 0.52rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  border: 1px solid rgba(196,83,42,0.2);
+  padding: 0.5rem 1rem;
+  transition: all .2s;
+}
+.atag:hover { border-color: var(--terracotta); color: var(--terracotta); background: rgba(196,83,42,0.05); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.on { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: .1s; }
+.d2 { transition-delay: .22s; }
+.d3 { transition-delay: .34s; }
+.d4 { transition-delay: .46s; }
+.d5 { transition-delay: .58s; }
+
+@media (max-width: 900px) {
+  nav { padding: 1.4rem 1.5rem; }
+  .hero-main { padding: 8rem 1.5rem 3rem; }
+  .hero-bottom { flex-direction: column; align-items: flex-start; }
+  .about-inner { grid-template-columns: 1fr; }
+  .about-left { padding: 5rem 1.5rem 3rem 1.5rem; border-right: none; border-bottom: 1px solid rgba(196,83,42,0.15); }
+  .about-right { padding: 4rem 1.5rem 6rem; }
+  .about-photo { max-width: 280px; }
+}
+```
+
+  </style>
+</head>
+<body>
+  <div id="cur"></div>
+
+  <!-- NAV -->
+
+  <nav>
+    <a href="#hero" class="nav-logo">EMNA <span>NH</span> BETTAÏEB</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-dot"></div>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+
+  <section id="hero">
+    <div class="hero-pattern-bg"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-symbol-tr">ⵣ</div>
+
+```
+<!-- Corner ornaments -->
+<svg class="corner-ornament tl" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="60,5 115,32 115,88 60,115 5,88 5,32" fill="none" stroke="#7a1a3a" stroke-width="1"/>
+  <polygon points="60,20 100,42 100,78 60,100 20,78 20,42" fill="none" stroke="#7a1a3a" stroke-width="0.6"/>
+  <polygon points="60,35 85,52 85,68 60,85 35,68 35,52" fill="none" stroke="#e8c42a" stroke-width="0.8"/>
+  <circle cx="60" cy="60" r="6" fill="none" stroke="#e8c42a" stroke-width="1"/>
+  <line x1="60" y1="5" x2="60" y2="35" stroke="#7a1a3a" stroke-width="0.5"/>
+  <line x1="115" y1="32" x2="85" y2="52" stroke="#7a1a3a" stroke-width="0.5"/>
+  <line x1="5" y1="32" x2="35" y2="52" stroke="#7a1a3a" stroke-width="0.5"/>
+</svg>
+<svg class="corner-ornament br" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="60,5 115,32 115,88 60,115 5,88 5,32" fill="none" stroke="#7a1a3a" stroke-width="1"/>
+  <polygon points="60,20 100,42 100,78 60,100 20,78 20,42" fill="none" stroke="#7a1a3a" stroke-width="0.6"/>
+  <polygon points="60,35 85,52 85,68 60,85 35,68 35,52" fill="none" stroke="#e8c42a" stroke-width="0.8"/>
+  <circle cx="60" cy="60" r="6" fill="none" stroke="#e8c42a" stroke-width="1"/>
+</svg>
+
+<div class="hero-main">
+  <div class="hero-label reveal d1">Creative Conceptualizer & Copywriter — Tunis, Tunisia</div>
+  <h1 class="hero-headline reveal d2">
+    <span class="normal">Somewhere between</span>
+    <span class="normal">the billboard</span>
+    <span class="accent">and the scroll —</span>
+    <span class="outline">there's one idea</span>
+    <span class="normal">holding everything</span>
+    <span class="normal">together.</span>
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-sub reveal d3">
+      <em>That's where I work.</em>
+    </p>
+    <a href="#about" class="hero-cta reveal d4">Discover the work →</a>
+  </div>
+</div>
+
+<!-- Symbol scroll -->
+<div class="hero-symbols">
+  <div class="symbol-scroll">
+    <span class="sym highlight">Creative Conceptualizer</span>
+    <span class="sym">✦</span>
+    <span class="sym">TBWA\POINTCARRE</span>
+    <span class="sym">✦</span>
+    <span class="sym highlight">Singer-Songwriter</span>
+    <span class="sym">✦</span>
+    <span class="sym">Music Video Director</span>
+    <span class="sym">✦</span>
+    <span class="sym highlight">Sports Photographer</span>
+    <span class="sym">✦</span>
+    <span class="sym">Radio Presenter</span>
+    <span class="sym">✦</span>
+    <span class="sym highlight">Observer of the Tunisian Mind</span>
+    <span class="sym">✦</span>
+    <span class="sym">Carthage Festival</span>
+    <span class="sym">✦</span>
+    <!-- duplicate for seamless loop -->
+    <span class="sym highlight">Creative Conceptualizer</span>
+    <span class="sym">✦</span>
+    <span class="sym">TBWA\POINTCARRE</span>
+    <span class="sym">✦</span>
+    <span class="sym highlight">Singer-Songwriter</span>
+    <span class="sym">✦</span>
+    <span class="sym">Music Video Director</span>
+    <span class="sym">✦</span>
+    <span class="sym highlight">Sports Photographer</span>
+    <span class="sym">✦</span>
+    <span class="sym">Radio Presenter</span>
+    <span class="sym">✦</span>
+    <span class="sym highlight">Observer of the Tunisian Mind</span>
+    <span class="sym">✦</span>
+    <span class="sym">Carthage Festival</span>
+    <span class="sym">✦</span>
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- ══ ABOUT ══ -->
+
+  <section id="about">
+    <div class="about-pattern-left"></div>
+    <div class="about-pattern-right"></div>
+
+```
+<div class="about-inner">
+  <!-- Left -->
+  <div class="about-left">
+    <div>
+      <div class="about-eyebrow">// About</div>
+      <h2 class="about-title reveal">
+        <span class="dim">THE</span>
+        <span class="lit">MIND</span>
+        <span class="dim">BEHIND</span>
+        <span class="acc">THE IDEA.</span>
+      </h2>
+    </div>
+
+    <div>
+      <div class="about-photo reveal d2">
+        <div class="about-photo-center">
+          <div class="photo-monogram">ENB</div>
+          <div class="photo-hint">Portrait — coming soon</div>
+        </div>
+        <div class="about-photo-corner tl"></div>
+        <div class="about-photo-corner tr"></div>
+        <div class="about-photo-corner bl"></div>
+        <div class="about-photo-corner br"></div>
+      </div>
+
+      <div class="about-stats reveal d3">
+        <div class="stat"><div class="stat-n">TBWA</div><div class="stat-l">Current Agency</div></div>
+        <div class="stat"><div class="stat-n">12Y</div><div class="stat-l">As a Musician</div></div>
+        <div class="stat"><div class="stat-n">4</div><div class="stat-l">Languages</div></div>
+        <div class="stat"><div class="stat-n" style="color:var(--gold)">OPEN</div><div class="stat-l">For Briefs</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right -->
+  <div class="about-right">
+    <div class="about-bg-sym">ⵣ</div>
+
+    <p class="about-body reveal d1">
+      Everything I've done has made me better at this.
+    </p>
+    <p class="about-body reveal d2">
+      <strong>Leading communications for the Tunisian Basketball Federation</strong> taught me that vision without structure collapses — and that the right image, in the right moment, shapes how an entire sport is perceived. <strong>Performing at Carthage International Festival</strong> taught me how a room feels when an idea lands — and how quickly it dies when it doesn't. Writing and directing music videos taught me that <em>concept without execution is just a thought.</em>
+    </p>
+    <p class="about-body reveal d3">
+      Now I do all of that — but for brands. I'm a creative conceptualizer and copywriter at <strong>TBWA\POINTCARRE</strong>. I find the single idea that makes a billboard, a TV spot, a radio ad, a social campaign, and a live event feel like they all came from the same place. <strong>Because to me, they always do.</strong>
+    </p>
+
+    <div class="about-quote reveal d3">
+      But the thing that actually makes the work work — is that I'm an observer.
+    </div>
+
+    <p class="about-body reveal d4">
+      I've spent years watching, listening, and decoding how Tunisians think, feel, and respond. This culture doesn't resemble any other. And I've mastered the art of <em>speaking to it — not at it.</em>
+    </p>
+    <p class="about-body reveal d4">
+      That's the insight no brief can give you. <strong>You either have it or you don't.</strong>
+    </p>
+
+    <div class="about-tags reveal d5">
+      <span class="atag">TBWA\POINTCARRE</span>
+      <span class="atag">Creative AdSchool</span>
+      <span class="atag">Arabic</span>
+      <span class="atag">Tunisian Dialect</span>
+      <span class="atag">French</span>
+      <span class="atag">English</span>
+      <span class="atag">Singer-Songwriter</span>
+      <span class="atag">Music Video Direction</span>
+      <span class="atag">Sports Photography</span>
+      <span class="atag">Radio</span>
+      <span class="atag">Carthage Festival</span>
+      <span class="atag">Basketball Federation</span>
+    </div>
+  </div>
+</div>
+```
+
+  </section>
+
+  <script>
+    // Cursor
+    const cur = document.getElementById('cur');
+    document.addEventListener('mousemove', e => {
+      cur.style.left = e.clientX + 'px';
+      cur.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cur.classList.add('big'));
+      el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+    });
+
+    // Scroll reveal
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // Hero fades on load
+    window.addEventListener('load', () => {
+      document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+        setTimeout(() => el.classList.add('on'), 200 + i * 150);
+      });
+    });
+  </script>
+
+</body>
+</html>
